@@ -5,7 +5,8 @@ import os
 class Obs:
     def __init__(self, profile="FbLive"):
         self.profile = profile
-        self.path = 'C:\\Users\\Lilic-PC\\AppData\\Roaming\\obs-studio\\basic\\profiles\\FbLive'
+        user_profile = os.getlogin()
+        self.path = f'C:\\Users\\{user_profile}\\AppData\\Roaming\\obs-studio\\basic\\profiles\\FbLive'
         self.settings = self.read_settings()
 
     def read_settings(self):

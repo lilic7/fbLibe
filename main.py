@@ -22,6 +22,7 @@ def start_live():
 
 
 def end_live():
+    os.system("taskkill /F /IM obs64.exe")
     fbLive.end_live()
     label['text'] = "Live terminat"
 

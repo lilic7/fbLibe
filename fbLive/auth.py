@@ -40,8 +40,3 @@ class FbAuth:
             self.settings.change_user_token(token)
         except:
             print(response.text)
-
-
-if __name__ == "__main__":
-    fb = FbAuth()
-    print(fb.change_user_token())
