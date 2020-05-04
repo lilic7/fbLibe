@@ -1,0 +1,79 @@
+{
+  "data": [
+    {
+      "default": {
+        "days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri"
+        ],
+        "program": [
+          {
+            "start_time": "6:59:30",
+            "end_time": "9:57:00",
+            "page": "Matinalii",
+            "title": "Matinalii ::date::"
+          },
+          {
+            "start_time": "12:59:30",
+            "end_time": "13:40:00",
+            "page": "TVR Moldova",
+            "title": "Jurnal TVR 13.00 ::date::"
+          },
+          {
+            "start_time": "16:59:30",
+            "end_time": "17:55:00",
+            "page": "TVR Moldova",
+            "title": "Obiectiv Comun ::date::"
+          },
+          {
+            "start_time": "17:59:30",
+            "end_time": "18:55:00",
+            "page": "TVR Moldova",
+            "title": "Jurnal TVR 18.00 ::date::"
+          },
+          {
+            "start_time": "18:59:30",
+            "end_time": "19:55:00",
+            "page": "TVR Moldova",
+            "title": "Punctul pe AZi ::date::"
+          }
+        ]
+      },
+      "Sat": {
+        "program": [
+          {
+            "start_time": "17:59:30",
+            "end_time": "18:55:00",
+            "page": "TVR Moldova",
+            "title": "Jurnal TVR 18.00 ::date::"
+          }
+        ]
+      },
+      "Sun": {
+        "program": [
+          {
+            "start_time": "17:59:30",
+            "end_time": "18:25:00",
+            "page": "TVR Moldova",
+            "title": "Jurnal TVR 18.00 ::date::"
+          },
+          {
+            "start_time": "18:25:30",
+            "end_time": "18:55:00",
+            "page": "TVR Moldova",
+            "title": "Retrospectiva săptămânii ::date::"
+          },
+          {
+            "start_time": "18:59:30",
+            "end_time": "19:55:00",
+            "page": "TVR Moldova",
+            "title": "Conexiuni ::date::"
+          }
+        ]
+      }
+    }
+  ]
+}
