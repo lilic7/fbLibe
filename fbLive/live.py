@@ -29,16 +29,38 @@ class FbLive:
         query = "https://graph.facebook.com/{}?" \
                 "end_live_video=true&" \
                 "access_token={}".format(
-                    self.live_data['id'],
-                    self.page['access_token']
-                )
+            self.live_data['id'],
+            self.page['access_token']
+        )
         try:
             response = requests.post(query)
             return json.loads(response.text)
         except:
             print(response.text)
 
-    def get_stream_key(self, stream_url):
+    @staticmethod
+    def get_stream_key(stream_url):
         return stream_url.split("/rtmp/")[1]
 
-
+    def get_stream_status(self):
+        query = "https://graph.facebook.com/{}?" \
+                "fields=ingest_streams&access_token={}".format(
+            self.live_data['id'],
+            self.page['access_token']
+        )
+        try:
+            response = requests.get(query)
+            data = json.loads(response.text)
+            video_width = data['ingest_streams'][0]['stream_health']['video_width']
+            video_height = data['ingest_streams'][0]['stream_health']['video_height']
+            video_framerate = data['ingest_streams'][0]['stream_health']['video_framerate']
+            video_bitrate = data['ingest_streams'][0]['stream_health']['video_bitrate'] / 1000000
+            audio_bitrate = data['ingest_streams'][0]['stream_health']['audio_bitrate'] / 1000
+            return {
+                "size": f"{video_width}x{video_height}",
+                "framerate": str(round(video_framerate)),
+                "v_bitrate": str(round(video_bitrate, 3)),
+                "a_bitrate": str(round(audio_bitrate, 3))
+            }
+        except:
+            print(response.text)
