@@ -49,6 +49,7 @@ class FbLive:
             self.page['access_token']
         )
         try:
+            print(f"{self.live_data} \n {self.page['access_token']}")
             response = requests.get(query)
             data = json.loads(response.text)
             video_width = data['ingest_streams'][0]['stream_health']['video_width']
@@ -56,11 +57,14 @@ class FbLive:
             video_framerate = data['ingest_streams'][0]['stream_health']['video_framerate']
             video_bitrate = data['ingest_streams'][0]['stream_health']['video_bitrate'] / 1000000
             audio_bitrate = data['ingest_streams'][0]['stream_health']['audio_bitrate'] / 1000
+            # dash_url = data['ingest_streams'][0]['dash_preview_url']
             return {
+                # "dash_url": dash_url,
                 "size": f"{video_width}x{video_height}",
                 "framerate": str(round(video_framerate)),
                 "v_bitrate": str(round(video_bitrate, 3)),
                 "a_bitrate": str(round(audio_bitrate, 3))
             }
         except:
-            print(response.text)
+            print("Error: "+response.text)
+

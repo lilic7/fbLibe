@@ -1,5 +1,6 @@
 import json
 import time
+import os
 
 
 class ScheduleLive:
@@ -8,7 +9,7 @@ class ScheduleLive:
 
     @staticmethod
     def read_json():
-        filename = './scheduleLive/settings.json'
+        filename = os.path.dirname(__file__)+'/settings.json'
         try:
             with open(filename) as settings:
                 return json.load(settings)

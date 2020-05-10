@@ -1,11 +1,11 @@
 import os
 import tkinter as tk
+import time
 from time import strftime
 
 from obs import Obs
 from fbLive.live import FbLive
 from scheduleLive.scheduleLive import ScheduleLive
-
 
 # sc = ScheduleLive()
 # program = sc.get_today_program()
@@ -20,4 +20,14 @@ from scheduleLive.scheduleLive import ScheduleLive
 #     i += 1
 
 if __name__ == "__main__":
-    root.mainloop()
+    fbLive = FbLive("DevTest")
+    stream_key = fbLive.create_live()
+    obs = Obs()
+    obs.change_key(stream_key)
+    obs.start_live()
+    time.sleep(5)
+    data = {}
+    while "framerate" not in data.keys():
+        data = fbLive.get_stream_status()
+    else:
+        print(data)

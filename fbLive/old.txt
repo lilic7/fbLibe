@@ -1,8 +1,16 @@
-EAAPVTRc8PwwBAGzH6enDohbW5a4PXhwENpS0tndL1ZA4QURo6GUkBWrjOqCseSb9sBeP9GG7w2u58dIC5OS3ClcZAkOntY3n2gbQkGUELGitwMIyLRmEanspe7I5Dr57BxcOvwUsuaV8Ht06z26iAQ2gZCUM2ZApZB1200gnEGgZDZD
-EAAPVTRc8PwwBAMSXe9lZChT6XJLKz7JoZB0DZBZCkmz6kBl20BcVKWnMjjrZBWg2a3ADl9xLw5doZBKdRgRT4VMNgQNnjftFPbW78CcU3nJZBOh1G5olnChkENNLcEJyZCvF15CNGzhOO3OehKGbUGcLlpOtFZC5U8jFznwCIu0pQTQZDZD
-EAAPVTRc8PwwBAGzH6enDohbW5a4PXhwENpS0tndL1ZA4QURo6GUkBWrjOqCseSb9sBeP9GG7w2u58dIC5OS3ClcZAkOntY3n2gbQkGUELGitwMIyLRmEanspe7I5Dr57BxcOvwUsuaV8Ht06z26iAQ2gZCUM2ZApZB1200gnEGgZDZD
-EAAPVTRc8PwwBABcW4IGxEtKTzyosZCZCSjZC98j298DR7tbxZCveBoy0rlXDzrCx8pCqJwwZAepQgJ7Ta1HonysIp9kCNS2QudRDskhnuBNSTtm1o3bncEj8l58sYBCdxAL8tXJQFZCFyegqZBHe7D04dDAV2hyr1sLQ9bFZCd4ZCTgZDZD
-EAAPVTRc8PwwBABD0qN9xeu8mShBNCsEa6aSgyWQRkPhp772DZAGD1EaUt4xtzbUW2pIl0pSoZBzTxFO5TCR9grA8uZBosWZAcr1vre7VNMWGZCav8wVQQIOpZAJwNENBcmuqP1bmqxQzUKAbBddOaZC2BfAgQYhP8LZBuh3YTolPyAZDZD
-EAAPVTRc8PwwBAH0I51hqFB1yUrtRbUp6wLAqZAtcGpSkvrKh06rLp8AIjW5ZBdkDGQ6X4d1dRRmZAEdZA0M0DzKU4AM0dxUfJx7h2KLk7WeZBFzzaP8nKJddRLy0vDq46pdlzdJUDKS9a9coz3KeWer2fxwPzA9OQrNV5fLZC0MQZDZD
-EAAPVTRc8PwwBAAYEiZBgdwUZCDRjQHAPmbnySbYHuXZAAyepIh8DAovrEuDAwNB3ZA4AH7z5xLuMgyD00AgiXXvSPqnxCZCfpK8hCrb6QB4ezGCZCTZCyKw8JtwybxqruZBd3yCJdT6sjjSi5G5KSYFJ9SZAh0gDHIygQZDZD
-EAAPVTRc8PwwBAAYEiZBgdwUZCDRjQHAPmbnySbYHuXZAAyepIh8DAovrEuDAwNB3ZA4AH7z5xLuMgyD00AgiXXvSPqnxCZCfpK8hCrb6QB4ezGCZCTZCyKw8JtwybxqruZBd3yCJdT6sjjSi5G5KSYFJ9SZAh0gDHfTJ6nIsqJzIygQZDZD
+{'id': '108042054236908',
+'stream_url': 'rtmps://live-api-s.facebook.com:443/rtmp/108042054236908?s_bl=1&s_sc=108042087570238&s_sw=0&s_vt=api-s&a=Aby1qIRl7iBiCoxu',
+'secure_stream_url': 'rtmps://live-api-s.facebook.com:443/rtmp/108042054236908?s_bl=1&s_sc=108042087570238&s_sw=0&s_vt=api-s&a=Aby1qIRl7iBiCoxu',
+'stream_secondary_urls': [],
+'secure_stream_secondary_urls': []}
+
+
+{"ingest_streams":[{
+"stream_id":"0",
+"stream_url":"rtmps://live-api-s.facebook.com:443/rtmp/108045907569856?s_bl=1&s_sc=108045940903186&s_sw=0&s_vt=api-s&a=AbxxxU1HwrKx_M3A",
+"secure_stream_url":"rtmps://live-api-s.facebook.com:443/rtmp/108045907569856?s_bl=1&s_sc=108045940903186&s_sw=0&s_vt=api-s&a=AbxxxU1HwrKx_M3A",
+"is_master":true,
+"dash_preview_url":"https://video.fkiv5-1.fna.fbcdn.net/hvideo-prn1/_nc_cat-106/v/rTWPRnnGZ_jhRrPFhvB_A/live-dash/dash-md/108045907569856_0.mpd?_nc_eui2=AeFaoWiVIFLKRpi4TLX1BqgHr19PTFA7f3CvX09MUDt_cK6760gHN35kAOnQ0e42Rvum0oJFQpigxaWS2oTmgkAt&_nc_rl=AfAPz6xEQPfYIoNS&ms=m_CN&oh=17ff8dd00b3be44e897d38aeb4f9172f&oe=5EB638F5",
+"dash_ingest_url":"https://dashi.facebook.com:443/rtmp/108045907569856?s_bl=1&s_l=1&s_sc=108045940903186&s_sw=0&s_vt=api-s&a=AbzSWLe72HPxjIk5",
+"id":"108045920903188"}],
+"id":"108045907569856"}
