@@ -1,25 +1,25 @@
 import json
+import os
 
 
 class FbSettings:
     def __init__(self):
+        self.filename = os.path.dirname(__file__) + '/settings.json'
         self.settings = self.read_json()
 
     def read_json(self):
-        filename = './fbLive/settings.json'
         try:
-            with open(filename) as settings:
+            with open(self.filename) as settings:
                 return json.load(settings)
         except FileNotFoundError:
-            print(f"File '{filename}' does not exists")
+            print(f"File '{self.filename}' does not exists")
 
     def write_to_json(self):
-        filename = './settings.json'
         try:
-            with open(filename, "w") as settings:
+            with open(self.filename, "w") as settings:
                 json.dump(self.settings, settings)
         except FileNotFoundError:
-            print(f"File '{filename}' does not exists")
+            print(f"File '{self.filename}' does not exists")
 
     def change_user_token(self, token):
         self.settings["user_access_token"] = token

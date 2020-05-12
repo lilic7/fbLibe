@@ -4,9 +4,10 @@ import os
 
 class Obs:
     def __init__(self, profile="FbLive"):
-        self.profile = profile
         user_profile = os.getlogin()
         self.path = f'C:\\Users\\{user_profile}\\AppData\\Roaming\\obs-studio\\basic\\profiles\\FbLive'
+        self.obs_link = os.path.dirname(__file__) + '\\data\\obs.lnk'
+        self.profile = profile
         self.settings = self.read_settings()
 
     def read_settings(self):
@@ -25,4 +26,4 @@ class Obs:
         self.write_settings()
 
     def start_live(self):
-        os.system(f"start data/OBS.lnk --profile \"{self.profile}\" --startstreaming")
+        os.system(f"start {self.obs_link} --profile \"{self.profile}\" --startstreaming --minimize-to-tray")

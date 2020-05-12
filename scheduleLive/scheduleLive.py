@@ -28,8 +28,3 @@ class ScheduleLive:
         day = self.get_current_day()
         position = "default" if self.check_default_program(day) else day
         return self.settings[0][position]["program"]
-
-
-if __name__ == "__main__":
-    sc = ScheduleLive()
-    print(sc.get_today_program())

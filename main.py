@@ -1,33 +1,10 @@
-import os
-import tkinter as tk
-import time
-from time import strftime
+from tkinter import *
 
-from obs import Obs
-from fbLive.live import FbLive
-from scheduleLive.scheduleLive import ScheduleLive
+from fbLive.auth import FbAuth
+from interface.App import App
 
-# sc = ScheduleLive()
-# program = sc.get_today_program()
-# start_pos = 220
-# current_date = strftime('%d.%m.%Y')
-# i = 0
-# for item in program:
-#     title = item["title"].replace("::date::", current_date)
-#     label = tk.Label(root, fg='black', font=('helvetica', 10, 'normal'), text=f'{title}').grid(row=i, column=0)
-#     canvas1.create_window(100, start_pos, window=label)
-#     start_pos += 30
-#     i += 1
+fb_auth = FbAuth()
+fb_auth.change_user_token()
+fb_auth.get_pages()
 
-if __name__ == "__main__":
-    fbLive = FbLive("DevTest")
-    stream_key = fbLive.create_live()
-    obs = Obs()
-    obs.change_key(stream_key)
-    obs.start_live()
-    time.sleep(5)
-    data = {}
-    while "framerate" not in data.keys():
-        data = fbLive.get_stream_status()
-    else:
-        print(data)
+App(Tk(), "Facebook Live Manager")

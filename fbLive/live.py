@@ -23,7 +23,7 @@ class FbLive:
             self.live_data = json.loads(response.text)
             return self.get_stream_key(self.live_data['stream_url'])
         except:
-            print(response.text)
+            print("Create live", response.text)
 
     def end_live(self):
         query = "https://graph.facebook.com/{}?" \

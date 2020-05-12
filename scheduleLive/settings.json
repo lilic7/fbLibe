@@ -11,8 +11,14 @@
         ],
         "program": [
           {
-            "start_time": "6:59:30",
-            "end_time": "9:57:00",
+            "start_time": "06:59:30",
+            "end_time": "09:57:00",
+            "page": "DevLilic",
+            "title": "Live Test ::date::"
+          },
+          {
+            "start_time": "06:59:30",
+            "end_time": "09:57:00",
             "page": "Matinalii",
             "title": "Matinalii ::date::"
           },
