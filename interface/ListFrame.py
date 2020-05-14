@@ -1,25 +1,16 @@
 from time import strftime
 from tkinter import *
+from interface.AbstractFrame import AbstractFrame
 
-
-class ListFrame:
+class ListFrame(AbstractFrame):
     def __init__(self, parent, data):
-        self.current_date = strftime('%d.%m.%Y')
-        self.window = Frame(bd=1, relief=SUNKEN)
-        self.parent = parent
+        super().__init__(parent)
         self.data = data
         self.items_in_line = len(data[0])
-        self.label_settings = {
-            "padx": 10,
-            "pady": 5,
-            "bg": "#fff",
-            "anchor": "w",
-            "bd": 1,
-            "relief": SUNKEN
-        }
-        self.initUI()
+        self.init_ui()
 
-    def initUI(self):
+    def init_ui(self):
+        self.window.config(bd=1, relief=SUNKEN)
         self.headings()
         self.generate_list()
 
@@ -33,24 +24,37 @@ class ListFrame:
             "row": 0,
             "sticky": 'we'
         }
-        headings = ["Pagina", "Inceput Live", "Sfarsit Live", "Title"]
+        headings = ["Pagina", "Inceput Live", "Sfarsit Live", "Titlu"]
         for i in range(self.items_in_line):
-            self.label(headings[i], row=0, column=i, lbl_cnf=lbl_cnf, grid_cnf=grid_cnf)
+            Label(self.window,
+                  cnf=lbl_cnf,
+                  text=headings[i]).grid(cnf=grid_cnf, column=i)
 
     def generate_list(self):
         row = 1
+        for item in self.data:
+            item["title"] = self.set_title(item["title"])
+            for column_num in range(self.items_in_line):
+                self.generate_label(item, row, column_num)
+            row += 1
+
+    def generate_label(self, item, row, column):
+        label_settings = {
+            "padx": 10,
+            "pady": 5,
+            "bg": "#fff",
+            "anchor": "w",
+            "bd": 1,
+            "relief": SUNKEN
+        }
         grid_cnf = {
             "sticky": 'we',
         }
-        ord = ["page", "start_time", "end_time", "title"]
-        for item in self.data:
-            item["title"] = self.set_title(item["title"])
-            for key in range(self.items_in_line):
-                self.label(item[ord[key]], row, key, self.label_settings, grid_cnf)
-            row += 1
+        labels_order = ["page", "start_time", "end_time", "title"]
+        Label(self.window,
+              text=item[labels_order[column]],
+              cnf=label_settings).grid(row=row, column=column, cnf=grid_cnf)
 
-    def label(self, text, row, column, lbl_cnf, grid_cnf):
-        Label(self.window, cnf=lbl_cnf, text=text).grid(row=row, column=column, cnf=grid_cnf)
-
-    def set_title(self, title):
-        return title.replace("::date::", self.current_date)
+    @staticmethod
+    def set_title(title):
+        return title.replace("::date::", strftime('%d.%m.%Y'))

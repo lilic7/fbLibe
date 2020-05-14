@@ -1,6 +1,6 @@
 import json
 import requests
-from fbLive.settings import FbSettings
+from live.FbSettings import FbSettings
 
 
 class FbAuth:
@@ -17,12 +17,9 @@ class FbAuth:
         try:
             response = requests.get(query)
             pages = json.loads(response.text)['data']
-            self.update_pages(pages)
+            self.settings.save_pages_data(pages)
         except:
             print(response.text)
-
-    def update_pages(self, pages):
-        self.settings.save_pages_data(pages)
 
     def change_user_token(self):
         app_data = self.settings.get_app_data()

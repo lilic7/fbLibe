@@ -28,6 +28,10 @@ class FbSettings:
     def get_user_token(self):
         return self.settings["user_access_token"]
 
+    def get_default_page(self):
+        default_page_name = self.settings['default_page']
+        return self.get_page(default_page_name)
+
     def get_app_data(self):
         return {"app_id": self.settings['app_id'], "app_secret": self.settings["app_secret"]}
 

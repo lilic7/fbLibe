@@ -1,14 +1,17 @@
 import json
 import requests
 
-from fbLive.settings import FbSettings
+from live.FbSettings import FbSettings
 
 
 class FbLive:
-    def __init__(self, page_name):
+    def __init__(self):
         self.settings = FbSettings()
-        self.page = self.settings.get_page(page_name)
+        self.page = self.settings.get_default_page()
         self.live_data = {}
+
+    def set_active_page(self, page):
+        self.page = self.settings.get_page(page)
 
     def get_active_page(self):
         return self.page

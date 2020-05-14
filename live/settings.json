@@ -1,0 +1,19 @@
+{
+  "app_id": "1078952009154316",
+  "app_secret": "504b7761a24f58ac6e265743517eff39",
+  "user_id": "696099711142030",
+  "default_page": "DevTest",
+  "user_access_token": "EAAPVTRc8PwwBAHJkT0r2Rh0Dl4JlkVkArrTvizOlkQ7SO0svNXhrlHqm4ffXirAcWRuZA0tHAkQpAHo1u51KSgvuxYzTWll8RwFxBUV9MKJ6zhtaF1AYTqh0nDCDWjhSy0sMLFZBeymZAqBlCP1YaeNB4FgpOkcDPbZCDUNV4AZDZD",
+  "pages": [
+    {
+      "name": "DevTest",
+      "access_token": "EAAPVTRc8PwwBAGKCcmsbPqVZArykKZCp0nzijwGlMLZCPHg0n3wLrvtVjaD5xC6wg0bTWNxZBymy38U7DeAxvbxpiZBRk9cV2ta3SFJ8tARoTQOCFIEwbyrr6sunkHNfNtvw8EnuN5RVuCOVNinlIfJhZCZCaQ2hHzC4t599mbogQZDZD",
+      "id": "100359165005197"
+    },
+    {
+      "name": "Calatorii cu gust",
+      "access_token": "EAAPVTRc8PwwBAAaxbgqXnwDSN242h06aIRZBpG23KIpciUoae9F9Sf0IeH2grkj1GTYl8197Ax69W7lggf16ZC8i4vyZAPVuXKvcpjhBinVZAkXBeimH7flhukTHdNeWmqZCd3ldBdnq7FXwmKmFXGIz6aNPtRUEArqbPMTNKuQZDZD",
+      "id": "305794429919240"
+    }
+  ]
+}

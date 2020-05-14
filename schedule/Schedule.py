@@ -1,10 +1,10 @@
 import json
-import datetime
+from datetime import datetime, time
 import time
 import os
 
 
-class ScheduleLive:
+class Schedule:
     def __init__(self):
         self.settings = self.read_json()["data"]
 
@@ -32,9 +32,19 @@ class ScheduleLive:
 
     def get_next_live_schedule(self):
         today_program = self.get_today_program()
-        now = time.localtime()
+        now = datetime.today()
+        dt = datetime.today()
         for item in today_program:
-            item_time = time.strptime(f"{now.tm_year}-{now.tm_mon}-{now.tm_mday}-{item['start_time']}", "%Y-%m-%d-%H:%M:%S")
+            item_time = datetime.strptime(f"{dt.date()} {item['start_time']}", "%Y-%m-%d %H:%M:%S")
+            # print('item_time', item_time)
+            # print("now", now)
             if item_time > now:
-                # print(item_time, now, item)
+                # print(f"{item_time} greater", now, item)
                 return item
+            else:
+                # item_time = time.strptime(f"{now.tm_year}-{now.tm_mon}-{now.tm_mday+1}-{item['start_time']}",
+                #                           "%Y-%m-%d-%H:%M:%S")
+                # print(f"{item_time} lower", now, item)
+                return item
+
+
