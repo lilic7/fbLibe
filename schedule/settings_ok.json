@@ -11,16 +11,34 @@
         ],
         "program": [
           {
-            "start_time": "06:30:00",
-            "end_time": "06:55:00",
-            "page": "DevTest",
-            "title": "Live Test 1 ::date::"
+            "start_time": "06:59:30",
+            "end_time": "09:57:00",
+            "page": "Matinalii",
+            "title": "Matinalii ::date::"
           },
           {
-            "start_time": "18:09:30",
-            "end_time": "20:55:00",
-            "page": "DevTest",
-            "title": "Live Test 2 ::date::"
+            "start_time": "12:59:30",
+            "end_time": "13:40:00",
+            "page": "TVR Moldova",
+            "title": "Jurnal TVR 13.00 ::date::"
+          },
+          {
+            "start_time": "16:59:30",
+            "end_time": "17:55:00",
+            "page": "TVR Moldova",
+            "title": "Obiectiv Comun ::date::"
+          },
+          {
+            "start_time": "17:59:30",
+            "end_time": "18:55:00",
+            "page": "TVR Moldova",
+            "title": "Jurnal TVR 18.00 ::date::"
+          },
+          {
+            "start_time": "18:59:30",
+            "end_time": "19:55:00",
+            "page": "TVR Moldova",
+            "title": "Punctul pe AZi ::date::"
           }
         ]
       },

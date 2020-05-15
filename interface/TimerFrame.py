@@ -29,19 +29,19 @@ class TimerFrame(AbstractFrame):
 
         self.countdown_label.config(cnf=labels_cnf, text="00:00:00")
         self.countdown_label.grid(cnf=labels_grid_cnf, column=1)
-        # self.countdown()
+        self.countdown()
 
     def clock(self):
         self.clock_label['text'] = time.strftime('%H:%M:%S')
         self.clock_label.after(1000, self.clock)
 
-    # def countdown(self):
-    #     countdown = self.next()
-    #     if not countdown == "00:00:00":
-    #         self.countdown_label['text'] = countdown
-    #         self.countdown_label.after(1000, self.countdown)
-    #     else:
-    #         print("go live from countdown")
+    def countdown(self):
+        time_remain = self.app_settings.get_next_timer()
+        if time_remain:
+            self.countdown_label['text'] = time_remain
+        else:
+            print("go live from countdown")
+        print(self.countdown_label.after(1000, self.countdown))
     #
     # def next(self):
     #     now = time.localtime()

@@ -2,6 +2,7 @@ import os
 
 from obs.Obs import Obs
 from live.FbLive import FbLive
+from schedule.Schedule import Schedule
 
 
 class AppControl:
@@ -16,6 +17,7 @@ class AppControl:
     def __init__(self):
         self.schedule_ON = False
         self.live_ON = False
+        self.next = False
         self.fb_live = FbLive()
 
         if AppControl.__instance != None:
@@ -38,6 +40,16 @@ class AppControl:
 
     def toggle_schedule_status(self):
         self.schedule_ON = not self.schedule_ON
+        if self.schedule_ON:
+            sch = Schedule()
+            self.next = sch.get_next_live_schedule()
+        else:
+            self.next = False
+
+    def get_next_timer(self):
+        sch = Schedule()
+        self.next = sch.get_next_live_schedule()
+        return self.next
 
     def go_live(self):
         stream_key = self.fb_live.create_live()
