@@ -18,7 +18,7 @@ class App:
     def init_ui(self):
         sch = Schedule()
         data = sch.get_today_program()
-        sch.get_next_live_schedule()
+        # sch.get_next_live_schedule()
 
         TimerFrame(self.window).window.grid(row=0, column=0)
         LiveFrame(self.window).window.grid(row=1, column=0)

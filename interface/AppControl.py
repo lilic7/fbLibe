@@ -17,8 +17,9 @@ class AppControl:
     def __init__(self):
         self.schedule_ON = False
         self.live_ON = False
-        self.next = False
         self.fb_live = FbLive()
+        self.obs = Obs()
+        self.schedule = Schedule()
 
         if AppControl.__instance != None:
             raise Exception("AppSettings is singletone!")
@@ -34,29 +35,36 @@ class AppControl:
     def toggle_live_status(self):
         self.live_ON = not self.live_ON
         if self.live_ON:
-            self.go_live()
+            print("toggle live status START")
+            # self.go_live()
         else:
-            self.stop_live()
+            print("toggle live status - STOP LIVE")
+            # self.stop_live()
 
     def toggle_schedule_status(self):
         self.schedule_ON = not self.schedule_ON
+
+    def schedule_job(self):
         if self.schedule_ON:
-            sch = Schedule()
-            self.next = sch.get_next_live_schedule()
-        else:
-            self.next = False
+            time_remain = self.get_next_timer()
+            if time_remain:
+                return time_remain
+            else:
+                # print(" app control Go live ")
+                self.toggle_live_status()
+                return False
 
     def get_next_timer(self):
-        sch = Schedule()
-        self.next = sch.get_next_live_schedule()
-        return self.next
+        return self.schedule.get_next_live_schedule(start=not self.live_ON)
 
     def go_live(self):
         stream_key = self.fb_live.create_live()
-        obs = Obs()
-        obs.change_key(stream_key)
-        obs.start_live()
+        self.obs.change_key(stream_key)
+        self.obs.start_live()
 
     def stop_live(self):
-        os.system("taskkill /F /IM obs64.exe")
+        self.obs.end_live()
         self.fb_live.end_live()
+
+    def test_init_times(self):
+        self.schedule.test_generate_times()

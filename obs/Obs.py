@@ -27,3 +27,7 @@ class Obs:
 
     def start_live(self):
         os.system(f"start {self.obs_link} --profile \"{self.profile}\" --startstreaming --minimize-to-tray")
+
+    @staticmethod
+    def end_live():
+        os.system("taskkill /F /IM obs64.exe")

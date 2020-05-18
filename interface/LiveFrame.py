@@ -89,6 +89,15 @@ class LiveFrame(AbstractFrame):
             self.start_btn.config(state=NORMAL, bg="#3b5998")
             self.end_btn.config(state=DISABLED, bg="#ccc")
 
+        if self.app_settings.get_schedule_status():
+            self.start_btn.config(state=DISABLED, bg="#ccc")
+            self.schedule_btn.config(background="green")
+        else:
+            self.start_btn.config(state=NORMAL, bg="#3b5998")
+            self.schedule_btn.config(background="yellow")
+            
+        self.window.after(1000, self.btn_status)
+
     def schedule_toggle(self):
         self.app_settings.toggle_schedule_status()
         if self.app_settings.get_schedule_status():
