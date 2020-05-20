@@ -37,13 +37,11 @@ class TimerFrame(AbstractFrame):
         self.clock_label.after(1000, self.clock)
 
     def countdown(self):
-        # time_remain contains remaining time or False if no time has left
-        schedule_status = self.app_settings.get_schedule_status()
-        if schedule_status:
-            time_remain = self.app_settings.schedule_job()
-            self.countdown_label['text'] = (time_remain if time_remain and schedule_status else "0:00:00")
-            print("time_remain", time_remain)
-        print("live_ON", self.app_settings.live_ON)
-        # print("schedule_ON", self.app_settings.schedule_ON)
-        print("===")
-        self.countdown_job = self.window.after(1000, self.countdown)
+        if self.app_settings.is_schedule_active():
+            result = self.app_settings.schedule_job()
+            if result:
+                self.countdown_label.config(
+                    text=result['time'] if result['status'] == "ready" or result['status'] == "live" else "0:00:00",
+                    fg="red" if result['status'] == "live" else "orange"
+                )
+        self.window.after(1000, self.countdown)

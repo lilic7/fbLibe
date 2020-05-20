@@ -11,14 +11,14 @@
         ],
         "program": [
           {
-            "start_time": "23:59:00",
-            "end_time": "23:59:50",
+            "start_time": "09:57:40",
+            "end_time": "09:58:40",
             "page": "DevTest",
             "title": "Live Test 1 ::date::"
           },
           {
-            "start_time": "06:55:30",
-            "end_time": "07:59:00",
+            "start_time": "10:00:00",
+            "end_time": "10:01:00",
             "page": "DevTest",
             "title": "Live Test 2 ::date::"
           }

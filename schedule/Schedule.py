@@ -3,6 +3,8 @@ from datetime import datetime, time, date, timedelta
 import time
 import os
 
+from schedule.ScheduleItem import ScheduleItem
+
 
 class Schedule:
     def __init__(self):
@@ -19,6 +21,10 @@ class Schedule:
             print(f"File '{filename}' does not exists")
 
     @staticmethod
+    def set_title(title):
+        return title.replace("::date::", time.strftime('%d.%m.%Y'))
+
+    @staticmethod
     def get_current_day():
         return time.strftime("%a", time.gmtime())
 
@@ -32,29 +38,41 @@ class Schedule:
         # print(self.settings[0][position]["program"])
         return self.settings[0][position]["program"]
 
-    def ordered_program(self, start=True):
+    def ordered_program(self):
         program = self.get_today_program()
-        return sorted(program, key=lambda item: item['start_time' if start else "end_time"])
+        return sorted(program, key=lambda item: item['start_time'])
 
-    def get_next_live_schedule(self, start=True):
+    def process(self):
         # today_program = self.ordered_program()
-        today_program = self.test_schedule() # just for test. Remove when DONE
-        print(today_program)
-        ymd = date.today()
-        print(f"start = {start}")
-        now = datetime.now().replace(microsecond=0)
+        today_program = self.test_schedule()  # just for test. Remove when DONE
+        # print(today_program)
         for live_item in today_program:
-            hms = time.strptime(live_item["start_time" if start else "end_time"], "%H:%M:%S")
-            dt = datetime(ymd.year, ymd.month, ymd.day, hms.tm_hour, hms.tm_min, hms.tm_sec)
-            print(dt, now)
-            if dt > now:
-                return dt - now
-            elif dt == now:
-                start = not start
-                # print("Equal", start)
+            scheduled_item = ScheduleItem(live_item)
+            if scheduled_item.finished():
                 continue
+            if scheduled_item.is_next():
+                return {
+                    'status': "ready",
+                    'time': scheduled_item.remain_till_start()
+                }
+            elif scheduled_item.start_now():
+                return {
+                    'status': "start_live",
+                    'page': live_item['page'],
+                    'title': self.set_title(live_item['title'])
+                }
+            elif scheduled_item.end_now():
+                return {
+                    "status": "end_live"
+                }
             else:
-                return False
+                return {
+                    "status": "live",
+                    "time": scheduled_item.remain_till_end()
+                }
+
+        # TODO: schedule first item from tomorow list
+        print("all items end")
 
     def test_schedule(self):
         return [
@@ -67,18 +85,18 @@ class Schedule:
             {
                 "start_time": f"{self.test_data[2]}",
                 "end_time": f"{self.test_data[3]}",
-                "page": "DevTest",
+                "page": "Calatorii cu gust",
                 "title": "Live Test 2 ::date::"
             }
         ]
 
     def test_generate_times(self):
-        start_1 = datetime.now().replace(microsecond=0) + timedelta(seconds=5)
+        start_1 = datetime.now().replace(microsecond=0) + timedelta(seconds=10)
         self.test_data.append(str(start_1.time()))
-        end_1 = datetime.now().replace(microsecond=0) + timedelta(seconds=10)
+        end_1 = datetime.now().replace(microsecond=0) + timedelta(seconds=30)
         self.test_data.append(str(end_1.time()))
 
         start_2 = datetime.now().replace(microsecond=0) + timedelta(seconds=50)
         self.test_data.append(str(start_2.time()))
-        end_2 = datetime.now().replace(microsecond=0) + timedelta(seconds=55)
+        end_2 = datetime.now().replace(microsecond=0) + timedelta(seconds=120)
         self.test_data.append(str(end_2.time()))

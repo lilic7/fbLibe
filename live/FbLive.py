@@ -2,6 +2,7 @@ import json
 import requests
 
 from live.FbSettings import FbSettings
+from urllib import parse
 
 
 class FbLive:
@@ -16,11 +17,20 @@ class FbLive:
     def get_active_page(self):
         return self.page
 
-    def create_live(self):
-        query = "https://graph.facebook.com/{}/live_videos?status=LIVE_NOW&access_token={}".format(
+    @staticmethod
+    def encode_text(text):
+        return parse.quote(text)
+
+    def create_live(self, live_title):
+        query = "https://graph.facebook.com/{}/live_videos?" \
+                "status=LIVE_NOW&" \
+                "access_token={}".format(
             self.page['id'],
             self.page['access_token']
         )
+        if bool(live_title):
+            live_title = self.encode_text(live_title)
+            query += "&title={}".format(live_title)
         try:
             response = requests.post(query)
             self.live_data = json.loads(response.text)
@@ -69,5 +79,4 @@ class FbLive:
                 "a_bitrate": str(round(audio_bitrate, 3))
             }
         except:
-            print("Error: "+response.text)
-
+            print("Error: " + response.text)

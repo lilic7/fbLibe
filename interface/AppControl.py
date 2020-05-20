@@ -26,39 +26,36 @@ class AppControl:
         else:
             AppControl.__instance = self
 
-    def get_live_status(self):
+    def is_live_active(self):
         return self.live_ON
 
-    def get_schedule_status(self):
+    def is_schedule_active(self):
         return self.schedule_ON
 
-    def toggle_live_status(self):
+    def toggle_live_status(self, page=None, live_title=None):
         self.live_ON = not self.live_ON
         if self.live_ON:
             print("toggle live status START")
-            # self.go_live()
+            self.go_live(page, live_title)
         else:
             print("toggle live status - STOP LIVE")
-            # self.stop_live()
+            self.stop_live()
 
     def toggle_schedule_status(self):
         self.schedule_ON = not self.schedule_ON
 
     def schedule_job(self):
-        if self.schedule_ON:
-            time_remain = self.get_next_timer()
-            if time_remain:
-                return time_remain
-            else:
-                # print(" app control Go live ")
-                self.toggle_live_status()
-                return False
+        process = self.schedule.process()
+        if process['status'] == "start_live" and not self.live_ON:
+            self.toggle_live_status(process['page'], process['title'])
+        if process['status'] == "end_live" and self.live_ON:
+            self.toggle_live_status()
+        return process
 
-    def get_next_timer(self):
-        return self.schedule.get_next_live_schedule(start=not self.live_ON)
-
-    def go_live(self):
-        stream_key = self.fb_live.create_live()
+    def go_live(self, page, live_title):
+        if page:
+            self.fb_live.set_active_page(page)
+        stream_key = self.fb_live.create_live(live_title)
         self.obs.change_key(stream_key)
         self.obs.start_live()
 
