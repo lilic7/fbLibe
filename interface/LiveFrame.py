@@ -1,61 +1,22 @@
 from tkinter import *
 from interface.AbstractFrame import AbstractFrame
+from interface.InfoFrame import InfoFrame
 
 
 class LiveFrame(AbstractFrame):
     def __init__(self, parent):
         super().__init__(parent)
-        self.video_label = Label(self.window)
-        self.framerate_label = Label(self.window)
-        self.v_bitrate_label = Label(self.window)
-        self.a_bitrate_label = Label(self.window)
+        self.info_frame = InfoFrame(self.window)
 
         self.live_btn = Button(self.window, text="Start Live")
         self.schedule_btn = Button(self.window, text="Programat")
         self.init_ui()
 
     def init_ui(self):
-        self.video_frame()
-        self.video_info()
+        self.info_frame.window.grid(row=2, column=0, columnspan=6)
         self.live_control_buttons()
 
-    def video_frame(self):
-        label_cnf = {
-            "padx": 160,
-            "pady": 90,
-            "bg": "#000000",
-            "fg": "#ffffff",
-        }
-        grid_cnf = {
-            "row": 0,
-            "column": 0,
-            "columnspan": 6,
-            "padx": 20,
-        }
-        self.video_label.config(text="No video", cnf=label_cnf)
-        self.video_label.grid(cnf=grid_cnf)
 
-    def video_info(self):
-        info_label_cnf = {
-            "padx": 15,
-        }
-        grid_cnf = {
-            "row": 1,
-            "sticky": 'we',
-            "columnspan": 2
-        }
-        self.framerate_label.config(cnf=info_label_cnf, text="0 fps")
-        self.v_bitrate_label.config(cnf=info_label_cnf, text="Video bit. 0 Mbps")
-        self.a_bitrate_label.config(cnf=info_label_cnf, text="Audio bit. 0 Kbps")
-
-        self.framerate_label.grid(cnf=grid_cnf, column=0)
-        self.v_bitrate_label.grid(cnf=grid_cnf, column=2)
-        self.a_bitrate_label.grid(cnf=grid_cnf, column=4)
-
-    def update_info_label(self, data):
-        self.framerate_label['text'] = data['framerate']
-        self.v_bitrate_label['text'] = data['v_bitrate']
-        self.a_bitrate_label['text'] = data['a_bitrate']
 
     def live_control_buttons(self):
         btn_settings = {
@@ -65,7 +26,7 @@ class LiveFrame(AbstractFrame):
             'pady': 5
         }
         grid_cnf = {
-            "row": 2,
+            "row": 3,
             "pady": 10,
             "columnspan": 3
         }
@@ -91,7 +52,7 @@ class LiveFrame(AbstractFrame):
             else:
                 self.live_btn.config(state=NORMAL, bg="#3b5998", text="Start Live")
         self.window.after(1000, self.btn_status)
-            
+
     def schedule_toggle(self):
         self.app_settings.toggle_schedule_status()
         if self.app_settings.is_schedule_active():

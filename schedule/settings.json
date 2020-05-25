@@ -11,14 +11,14 @@
         ],
         "program": [
           {
-            "start_time": "09:57:40",
-            "end_time": "09:58:40",
-            "page": "DevTest",
+            "start_time": "13:10:30",
+            "end_time": "13:11:00",
+            "page": "Calatorii cu gust",
             "title": "Live Test 1 ::date::"
           },
           {
-            "start_time": "10:00:00",
-            "end_time": "10:01:00",
+            "start_time": "13:12:00",
+            "end_time": "13:12:20",
             "page": "DevTest",
             "title": "Live Test 2 ::date::"
           }
@@ -43,25 +43,31 @@
       "Sun": {
         "program": [
           {
-            "start_time": "17:59:30",
-            "end_time": "18:25:00",
-            "page": "TVR Moldova",
-            "title": "Jurnal TVR 18.00 ::date::"
+            "start_time": "17:05:00",
+            "end_time": "17:05:30",
+            "page": "Calatorii cu gust",
+            "title": "Live Test 1 ::date::"
           },
           {
-            "start_time": "18:25:30",
-            "end_time": "18:55:00",
-            "page": "TVR Moldova",
-            "title": "Retrospectiva saptamanii ::date::"
-          },
-          {
-            "start_time": "18:59:30",
-            "end_time": "19:55:00",
-            "page": "TVR Moldova",
-            "title": "Conexiuni ::date::"
+            "start_time": "17:12:00",
+            "end_time": "17:12:20",
+            "page": "DevTest",
+            "title": "Live Test 2 ::date::"
           }
         ]
       }
+    },
+    {
+      "pages": [
+        {
+          "title": "DevTest",
+          "icon": "devtest.png"
+        },
+        {
+          "title": "Calatorii cu gust",
+          "icon": "Calatorii_cu_gust.jpg"
+        }
+      ]
     }
   ]
 }

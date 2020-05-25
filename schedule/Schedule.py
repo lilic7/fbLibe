@@ -1,8 +1,7 @@
 import json
-from datetime import datetime, time, date, timedelta
+from datetime import datetime, time, timedelta
 import time
 import os
-
 from schedule.ScheduleItem import ScheduleItem
 
 
@@ -10,6 +9,12 @@ class Schedule:
     def __init__(self):
         self.settings = self.read_json()["data"]
         self.test_data = []
+        self.program = self.ordered_program()
+        self.day = True
+        self.icons = self.settings[1]
+
+    def toggle_day(self):
+        self.day = not self.day
 
     @staticmethod
     def read_json():
@@ -26,34 +31,39 @@ class Schedule:
 
     @staticmethod
     def get_current_day():
-        return time.strftime("%a", time.gmtime())
+        return datetime.today().strftime("%a")
+
+    @staticmethod
+    def get_tomorrow():
+        today = datetime.today()
+        tomorrow = today.replace(day=today.day + 1)
+        return tomorrow.strftime("%a")
 
     def check_default_program(self, day):
         default_days = self.settings[0]["default"]["days"]
         return default_days.count(day)
 
-    def get_today_program(self):
-        day = self.get_current_day()
+    def get_program(self, today=True):
+        day = self.get_current_day() if today else self.get_tomorrow()
         position = "default" if self.check_default_program(day) else day
-        # print(self.settings[0][position]["program"])
         return self.settings[0][position]["program"]
 
-    def ordered_program(self):
-        program = self.get_today_program()
+    def get_icons(self):
+        return self.settings[1]['pages']
+
+    def ordered_program(self, today=True):
+        program = self.get_program(today)
         return sorted(program, key=lambda item: item['start_time'])
 
     def process(self):
-        # today_program = self.ordered_program()
-        today_program = self.test_schedule()  # just for test. Remove when DONE
-        # print(today_program)
-        for live_item in today_program:
-            scheduled_item = ScheduleItem(live_item)
+        for live_item in self.program:
+            scheduled_item = ScheduleItem(live_item, today=self.day)
             if scheduled_item.finished():
                 continue
             if scheduled_item.is_next():
                 return {
                     'status': "ready",
-                    'time': scheduled_item.remain_till_start()
+                    'time': scheduled_item.remain_till_start(),
                 }
             elif scheduled_item.start_now():
                 return {
@@ -70,9 +80,9 @@ class Schedule:
                     "status": "live",
                     "time": scheduled_item.remain_till_end()
                 }
-
-        # TODO: schedule first item from tomorow list
-        print("all items end")
+        return {
+            "status": "no_lives"
+        }
 
     def test_schedule(self):
         return [

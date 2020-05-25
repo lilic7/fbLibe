@@ -22,6 +22,7 @@ class FbLive:
         return parse.quote(text)
 
     def create_live(self, live_title):
+        # "status=LIVE_NOW&" \
         query = "https://graph.facebook.com/{}/live_videos?" \
                 "status=LIVE_NOW&" \
                 "access_token={}".format(
@@ -62,9 +63,10 @@ class FbLive:
             self.page['access_token']
         )
         try:
-            print(f"{self.live_data} \n {self.page['access_token']}")
+            # print(f"{self.live_data} \n {self.page['access_token']}")
             response = requests.get(query)
             data = json.loads(response.text)
+            print(data)
             video_width = data['ingest_streams'][0]['stream_health']['video_width']
             video_height = data['ingest_streams'][0]['stream_health']['video_height']
             video_framerate = data['ingest_streams'][0]['stream_health']['video_framerate']
@@ -75,8 +77,9 @@ class FbLive:
                 # "dash_url": dash_url,
                 "size": f"{video_width}x{video_height}",
                 "framerate": str(round(video_framerate)),
-                "v_bitrate": str(round(video_bitrate, 3)),
-                "a_bitrate": str(round(audio_bitrate, 3))
+                "v_bitrate": str(round(video_bitrate, 1)),
+                "a_bitrate": str(round(audio_bitrate, 1))
             }
         except:
             print("Error: " + response.text)
+            return {}

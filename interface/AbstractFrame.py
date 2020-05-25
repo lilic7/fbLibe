@@ -6,7 +6,7 @@ from interface.AppControl import AppControl
 
 class AbstractFrame(ABC):
     def __init__(self, parent):
-        self.window = Frame()
+        self.window = Frame(parent)
         self.parent = parent
         self.app_settings = AppControl.get_instance()
 

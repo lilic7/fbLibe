@@ -11,9 +11,9 @@ class FbAuth:
         query = "https://graph.facebook.com/{}/accounts?" \
                 "fields=name,access_token&" \
                 "access_token={}".format(
-                    self.settings.get_user_id(),
-                    self.settings.get_user_token()
-                )
+            self.settings.get_user_id(),
+            self.settings.get_user_token()
+        )
         try:
             response = requests.get(query)
             pages = json.loads(response.text)['data']

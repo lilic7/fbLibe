@@ -17,18 +17,16 @@ class TimerFrame(AbstractFrame):
     def init_ui(self):
         labels_cnf = {
             "font": ('calibri', 28, 'bold'),
-            "fg": "black",
             "padx": 25
         }
         labels_grid_cnf = {
             "row": 0
         }
-        self.app_settings.test_init_times()
         self.clock_label.config(cnf=labels_cnf)
         self.clock_label.grid(cnf=labels_grid_cnf, column=0)
         self.clock()
 
-        self.countdown_label.config(cnf=labels_cnf, text="0:00:00")
+        self.countdown_label.config(cnf=labels_cnf, text="0:00:00", fg='orange')
         self.countdown_label.grid(cnf=labels_grid_cnf, column=1)
         self.countdown()
 
@@ -44,4 +42,11 @@ class TimerFrame(AbstractFrame):
                     text=result['time'] if result['status'] == "ready" or result['status'] == "live" else "0:00:00",
                     fg="red" if result['status'] == "live" else "orange"
                 )
+        else:
+            self.countdown_label.config(
+                text="0:00:00",
+                fg="#000"
+            )
+        # TODO: count time when is live without schedule
+
         self.window.after(1000, self.countdown)

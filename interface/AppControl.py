@@ -3,6 +3,7 @@ import os
 from obs.Obs import Obs
 from live.FbLive import FbLive
 from schedule.Schedule import Schedule
+from PIL import ImageTk, Image
 
 
 class AppControl:
@@ -20,6 +21,8 @@ class AppControl:
         self.fb_live = FbLive()
         self.obs = Obs()
         self.schedule = Schedule()
+        self.icons = self.schedule.get_icons()
+        self.message = "Live OFF"
 
         if AppControl.__instance != None:
             raise Exception("AppSettings is singletone!")
@@ -35,9 +38,11 @@ class AppControl:
     def toggle_live_status(self, page=None, live_title=None):
         self.live_ON = not self.live_ON
         if self.live_ON:
+            self.message = "Live On"
             print("toggle live status START")
             self.go_live(page, live_title)
         else:
+            self.message = "Live Off"
             print("toggle live status - STOP LIVE")
             self.stop_live()
 
@@ -50,6 +55,9 @@ class AppControl:
             self.toggle_live_status(process['page'], process['title'])
         if process['status'] == "end_live" and self.live_ON:
             self.toggle_live_status()
+        if process['status'] == "no_lives" and self.schedule_ON:
+            self.message = "Sfarsit program"
+            self.toggle_schedule_status()
         return process
 
     def go_live(self, page, live_title):
@@ -63,5 +71,13 @@ class AppControl:
         self.obs.end_live()
         self.fb_live.end_live()
 
-    def test_init_times(self):
-        self.schedule.test_generate_times()
+    def get_live_info(self):
+        return self.fb_live.get_stream_status()
+
+    def get_message(self):
+        return self.message
+
+    def get_icon(self, page):
+        icon = list(filter(lambda item: item["title"] == self.item['page'], self.icons))[0]['icon']
+        icon_path = os.path.dirname(__file__) + f"\\..\\data\\{icon}"
+        return ImageTk.PhotoImage(Image.open(icon_path))

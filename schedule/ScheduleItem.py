@@ -1,8 +1,9 @@
+import os
 from datetime import datetime, date, time
 
-
 class ScheduleItem:
-    def __init__(self, item):
+    def __init__(self, item, today=True):
+        self.today = today
         self.item = item
         self.start = datetime.strptime(self.item['start_time'], "%H:%M:%S")
         self.end = datetime.strptime(self.item['end_time'], "%H:%M:%S")
@@ -32,10 +33,15 @@ class ScheduleItem:
     def now():
         return datetime.now().replace(microsecond=0)
 
+    @staticmethod
+    def date():
+        return date.today()
+
     def start_time(self):
         start_time = time.fromisoformat(self.item['start_time'])
-        return datetime.combine(date.today(), start_time)
+        return datetime.combine(self.date(), start_time)
 
     def end_time(self):
         end_time = time.fromisoformat(self.item['end_time'])
-        return datetime.combine(date.today(), end_time)
+        return datetime.combine(self.date(), end_time)
+

@@ -56,15 +56,9 @@
         "program": [
           {
             "start_time": "17:59:30",
-            "end_time": "18:25:00",
-            "page": "TVR Moldova",
-            "title": "Jurnal TVR 18.00 ::date::"
-          },
-          {
-            "start_time": "18:25:30",
             "end_time": "18:55:00",
             "page": "TVR Moldova",
-            "title": "Retrospectiva saptamanii ::date::"
+            "title": "Jurnal TVR 18.00 ::date::"
           },
           {
             "start_time": "18:59:30",
